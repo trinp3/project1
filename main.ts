@@ -1,7 +1,6 @@
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     info.changeScoreBy(5)
     Grapes.setPosition(0, randint(0, 50))
-    Grapes.vy = 50
 })
 let Grapes: Sprite = null
 scene.setBackgroundColor(7)
@@ -42,3 +41,4 @@ Grapes = sprites.create(img`
     . . . . . c a c . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
+Grapes.vy = 50
