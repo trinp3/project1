@@ -1,14 +1,5 @@
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-    info.changeScoreBy(5)
-    Grapes.setPosition(0, randint(0, 50))
-    if (Basket.overlapsWith(Grapes)) {
-    	
-    }
-})
-let Grapes: Sprite = null
-let Basket: Sprite = null
 scene.setBackgroundColor(7)
-Basket = sprites.create(img`
+let Basket = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -27,7 +18,7 @@ Basket = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(Basket, 100, 0)
-Grapes = sprites.create(img`
+let Grapes = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . 4 e . . . . . . . . 
@@ -45,5 +36,33 @@ Grapes = sprites.create(img`
     . . . . . c a c . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
-tiles.placeOnTile(Grapes, tiles.getTileLocation(5, 1))
 Grapes.vy = 50
+let Acorn = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . e . . . . . . . . 
+    . . . . . . . e . . . . . . . . 
+    . . . . . 4 e 4 e 4 . . . . . . 
+    . . . . . e 4 e 4 e . . . . . . 
+    . . . . . . e e e . . . . . . . 
+    . . . . . . e e e . . . . . . . 
+    . . . . . . . e . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Enemy)
+Acorn.vy = 65
+forever(function () {
+    if (Basket.overlapsWith(Grapes)) {
+        info.changeScoreBy(5)
+        Grapes.setPosition(0, randint(0, 50))
+    }
+    if (Basket.overlapsWith(Acorn)) {
+        Basket.destroy()
+        game.over(false)
+    }
+})
