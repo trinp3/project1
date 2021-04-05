@@ -1,10 +1,14 @@
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     info.changeScoreBy(5)
     Grapes.setPosition(0, randint(0, 50))
+    if (Basket.overlapsWith(Grapes)) {
+    	
+    }
 })
 let Grapes: Sprite = null
+let Basket: Sprite = null
 scene.setBackgroundColor(7)
-let Basket = sprites.create(img`
+Basket = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -41,4 +45,5 @@ Grapes = sprites.create(img`
     . . . . . c a c . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
+tiles.placeOnTile(Grapes, tiles.getTileLocation(5, 1))
 Grapes.vy = 50
