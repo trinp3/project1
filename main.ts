@@ -1,4 +1,4 @@
-scene.setBackgroundColor(7)
+scene.setBackgroundColor(9)
 let Basket = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -18,7 +18,7 @@ let Basket = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(Basket, 100, 0)
-let Grapes = sprites.create(img`
+let list_grapes: Sprite = [sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . 4 e . . . . . . . . 
@@ -35,8 +35,42 @@ let Grapes = sprites.create(img`
     . . . . c c c a a c . . . . . . 
     . . . . . c a c . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Food)
-Grapes.vy = 50
+    `, SpriteKind.Food), sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . 4 e . . . . . . . . 
+    . . . . . . 4 e . . . . . . . . 
+    . . . . . . e 4 . . . . . . . . 
+    . . . . 2 2 2 e . . . . . . . . 
+    . . . . 2 2 2 2 2 2 . . . . . . 
+    . . . . 2 2 2 2 2 2 2 . . . . . 
+    . . . . . 2 2 2 2 2 2 . . . . . 
+    . . . . 2 2 2 2 2 2 . . . . . . 
+    . . . . 2 2 2 2 2 2 . . . . . . 
+    . . . . . 2 2 2 2 . . . . . . . 
+    . . . . 2 2 2 2 2 2 . . . . . . 
+    . . . . 2 2 2 2 2 2 . . . . . . 
+    . . . . . 2 2 2 . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food), sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . 4 e . . . . . . . . 
+    . . . . . . 4 e . . . . . . . . 
+    . . . . . . e 4 . . . . . . . . 
+    . . . . 7 7 7 e . . . . . . . . 
+    . . . . 7 7 7 7 7 7 . . . . . . 
+    . . . . 7 7 7 7 7 7 7 . . . . . 
+    . . . . . 7 7 7 7 7 7 . . . . . 
+    . . . . 7 7 7 7 7 7 . . . . . . 
+    . . . . 7 7 7 7 7 7 . . . . . . 
+    . . . . . 7 7 7 7 . . . . . . . 
+    . . . . 7 7 7 7 7 7 . . . . . . 
+    . . . . 7 7 7 7 7 7 . . . . . . 
+    . . . . . 7 7 7 . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food)]
+list_grapes.vy = 50
 let Acorn = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -57,11 +91,11 @@ let Acorn = sprites.create(img`
     `, SpriteKind.Enemy)
 Acorn.vy = 65
 forever(function () {
-    if (Basket.overlapsWith(Grapes)) {
+    if (Basket.overlapsWith(list_grapes)) {
         info.changeScoreBy(5)
-        Grapes.setPosition(0, randint(0, 50))
+        list_grapes.setPosition(0, randint(0, 50))
     }
-    if (Basket.overlapsWith(Acorn)) {
+    if (Acorn.overlapsWith(Basket)) {
         Basket.destroy()
         game.over(false)
     }
