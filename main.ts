@@ -37,6 +37,7 @@ let Grapes = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
 Grapes.setPosition(80, 6)
+Grapes.setStayInScreen(true)
 Grapes.vy = 50
 let Acorn = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -65,6 +66,8 @@ forever(function () {
         info.changeScoreBy(5)
         Grapes.setPosition(randint(1, 159), randint(1, 6))
         info.startCountdown(5)
+    } else {
+        Grapes.setBounceOnWall(true)
     }
     if (Acorn.overlapsWith(Basket)) {
         Basket.destroy()
