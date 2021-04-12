@@ -18,6 +18,7 @@ let Basket = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(Basket, 100, 0)
+Basket.setStayInScreen(true)
 let Grapes = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
