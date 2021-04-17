@@ -102,7 +102,7 @@ forever(function () {
         if (Basket.overlapsWith(list_grapes[index])) {
             info.changeScoreBy(5)
             list_grapes[index].setPosition(randint(1, 159), randint(1, 6))
-            info.startCountdown(5)
+            info.startCountdown(4)
         } else {
             list_grapes[index].setBounceOnWall(true)
         }
